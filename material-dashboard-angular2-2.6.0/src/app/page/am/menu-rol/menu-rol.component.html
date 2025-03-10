@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Privilegios</h4>
+                        <p class="card-category">Asignación de Privilegios a un determinado Rol</p>
+                    </div>
+                    <div class="card-body">
+                        <div fxLayout="row wrap" class="h-padding-10 d-flex justify-content-between align-items-center">
+                                
+                                <mat-form-field class="col-md-3">
+                                    <mat-select placeholder="Rol" [(ngModel)]="selectedRol" (selectionChange)="onSelectionChange($event)">
+                                        <mat-option *ngFor="let rol of this.listRol" [value]="rol.code"  >
+                                            {{rol.description}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>  
+                            
+                                <button mat-raised-button class="btn btn-primary" *ngIf="this.listMenu" (click)="save()">
+                                <mat-icon >save</mat-icon> &nbsp; Guardar
+                                </button>
+
+                        </div>
+
+
+                        <div class="card col-md-6 ml-auto mr-auto" *ngIf="this.listMenu">
+                              <mat-selection-list [(ngModel)]="selectedMenus" (selectionChange)="onMenuSelectionChange($event)">
+                                <mat-list-option *ngFor="let menu of listMenu"
+                                                [value]="menu.id"
+                                                [selected]="menu.select"
+                                                [style.padding-left.px]="getIndentation(menu)"
+                                                [ngClass]="{'parent-menu': !menu.idFather}"
+                                                >
+                                    {{ menu.name }}
+                                </mat-list-option>
+                              </mat-selection-list>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  </div>

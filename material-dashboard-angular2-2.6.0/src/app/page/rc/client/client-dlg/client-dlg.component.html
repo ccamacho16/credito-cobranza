@@ -1,0 +1,157 @@
+ <div class="card">
+    <div class="card-header card-header-primary">
+        <h4 class="card-title ">{{ titulo }}</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formGroup">
+            <div class="row">
+               <div class="col-md-3">
+                   <mat-form-field class="example-full-width">
+                        <input matInput placeholder="DNI" autocomplete="off" formControlName="dni" 
+                        minlength="6" maxlength="15" [readonly]="formGroup.get('id')?.value" disabled>
+                        <mat-error *ngIf="formGroup.get('dni')?.invalid && formGroup.get('dni')?.touched">
+                            <small *ngIf="formGroup.get('dni')?.errors?.['required']">El DNI es obligatorio.</small>
+                            <small *ngIf="formGroup.get('dni')?.errors?.['minlength']">Debe tener al menos 6 caracteres.</small>
+                        </mat-error>
+                   </mat-form-field>
+               </div>
+               <div class="col-md-4">
+                   <mat-form-field class="example-full-width">
+                     <input matInput placeholder="Nombres" autocomplete="off" formControlName="names" maxlength="50">
+                     <mat-error *ngIf="formGroup.get('names')?.invalid && formGroup.get('names')?.touched">
+                        <small *ngIf="formGroup.get('names')?.errors?.['required']">El nombre es obligatorio.</small>
+                    </mat-error>
+
+                   </mat-form-field>
+               </div>
+               <div class="col-md-5">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Apellidos" autocomplete="off" formControlName="lastnames" maxlength="100">
+                    <mat-error *ngIf="formGroup.get('lastnames')?.invalid && formGroup.get('lastnames')?.touched">
+                        <small *ngIf="formGroup.get('lastnames')?.errors?.['required']">El apellido es obligatorio.</small>
+                    </mat-error>
+                    </mat-form-field>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Fecha de Nacimiento" readonly [matDatepicker]="picker" formControlName="birthdate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker ></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-select placeholder="Género" formControlName="gender">
+                          <mat-option *ngFor="let gender of this.listGender" [value]="gender.value"  >
+                              {{gender.description}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('gender')?.invalid && formGroup.get('gender')?.touched">
+                            <small *ngIf="formGroup.get('gender')?.errors?.['required']">El género es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Telefonos" autocomplete="off" formControlName="phone" maxlength="50">
+                    <mat-error *ngIf="formGroup.get('phone')?.invalid && formGroup.get('phone')?.touched">
+                        <small *ngIf="formGroup.get('phone')?.errors?.['required']">El Telefono es obligatorio.</small>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <mat-select placeholder="Estado Civil" formControlName="civilStatus">
+                          <mat-option *ngFor="let stateCivil of this.listStateCivil" [value]="stateCivil.value"  >
+                              {{stateCivil.description}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('civilStatus')?.invalid && formGroup.get('civilStatus')?.touched">
+                            <small *ngIf="formGroup.get('civilStatus')?.errors?.['required']">El estado civil es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+
+           </div>
+
+           <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                    <input matInput type="email" placeholder="Email" autocomplete="off" formControlName="email" maxlength="50">
+                    <mat-error *ngIf="formGroup.get('email')?.invalid && formGroup.get('email')?.touched">
+                        <small *ngIf="formGroup.get('email')?.errors?.['email']">El formato del email no es válido.</small>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                      <input type="number" matInput placeholder="Ingreso Mensual" autocomplete="off" 
+                      formControlName="incomeMonth" maxlength="50"  (input)="formatNumber($event)" style="text-align: right;">
+                      <mat-error *ngIf="formGroup.get('incomeMonth')?.invalid && formGroup.get('incomeMonth')?.touched">
+                         <small *ngIf="formGroup.get('incomeMonth')?.errors?.['required']">El ingreso mensual es obligatorio.</small>
+                     </mat-error>
+ 
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Categoría" formControlName="category">
+                            <mat-option *ngFor="let category of this.listCategory" [value]="category.value"  >
+                                {{category.description}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('category')?.invalid && formGroup.get('category')?.touched">
+                            <small *ngIf="formGroup.get('category')?.errors?.['required']">La categoría es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        
+                        <input id="inputAprobador" type="text" 
+                                placeholder="Ocupación"
+                                matInput 
+                                formControlName="occupation" 
+                                [matAutocomplete]="autoOccupation">
+                        <mat-autocomplete #autoOccupation="matAutocomplete" >
+                            <mat-option *ngFor="let occupation of filterdOptionOccupation" [value]="occupation.value">
+                            {{ occupation.description }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="formGroup.get('occupation')?.invalid && formGroup.get('occupation')?.touched">
+                            <small *ngIf="formGroup.get('occupation')?.errors?.['required']">La ocupación es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+           </div>
+           <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Dirección de Domicilio" autocomplete="off" formControlName="addressHome" maxlength="150">
+                        <mat-error *ngIf="formGroup.get('addressHome')?.invalid && formGroup.get('addressHome')?.touched">
+                            <small *ngIf="formGroup.get('addressHome')?.errors?.['required']">La dirección del domicilio es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>
+                </div>           
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Dirección de Negocio/Trabajo" autocomplete="off" formControlName="addressBusiness" maxlength="150">
+                        <!-- <mat-hint class="character-count" align="end">{{formGroup.get('addressBusiness')?.value?.length || 0}} / 150</mat-hint> -->
+                    </mat-form-field>
+                </div>         
+           </div> 
+           <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <textarea matInput placeholder="Comentario"formControlName="comment" maxlength="500" rows="2"></textarea>
+                        <mat-hint class="character-count" align="end">{{formGroup.get('comment')?.value?.length || 0}} / 500</mat-hint>
+                    </mat-form-field>
+                </div>
+           </div>
+           
+           <button mat-raised-button class="btn btn-primary pull-right" (click)="accion === 'update' ? updateClient() : saveClient()">Guardar</button>
+       </form>
+    </div>
+</div>

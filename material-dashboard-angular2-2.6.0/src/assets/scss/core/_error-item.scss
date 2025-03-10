@@ -1,0 +1,20 @@
+mat-error {
+    color: red !important;
+    font-size: 12px;
+    margin-top: 0.3px; /* Aumenta un poco el espacio para que no se corte */
+    line-height: 1; /* Reduce la altura de línea para mejor ajuste */
+    white-space: normal; /* Permite que el texto se ajuste correctamente */
+}
+
+.character-count {
+    color: black !important;  /* Color negro */
+    font-size: 10px;
+    margin-top: 0.3px;          /* Espacio superior similar al de los mensajes de error */
+    line-height: 1;         /* Ajuste de altura de línea */
+    text-align: right;        /* Alineación a la derecha */
+    white-space: normal;      /* Ajuste de texto */
+}
+
+.row {
+    margin-bottom: 5px; 
+} 

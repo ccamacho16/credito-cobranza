@@ -1,0 +1,17 @@
+
+.parent-menu {
+    font-weight: bold;
+}
+
+
+.mat-selection-list .mat-list-option {
+    font-size: 14px; /* Ajusta el tamaño según tu diseño */
+    font-family: 'Roboto', sans-serif; /* Asegúrate de que sea el mismo tipo de letra que los otros componentes */
+    color: #333; /* Ajusta el color según tu diseño */
+  }
+  
+  /* Opcionalmente, ajusta el padding para que coincida con otros componentes */
+.mat-selection-list .mat-list-option {
+padding-top: 8px; /* Ajusta este valor según sea necesario */
+padding-bottom: 8px; /* Ajusta este valor según sea necesario */
+}

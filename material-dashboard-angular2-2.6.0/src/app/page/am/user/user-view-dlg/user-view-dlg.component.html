@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h4 class="card-title ">{{ titulo }}</h4>
+    </div>
+    <div class="card-body">
+        <div *ngFor="let row of this.infoRows" class="label-container">
+            <strong style="margin-left: 40px;">{{ row.label }}:</strong> {{ row.value }}
+        </div>
+    </div>
+</div>

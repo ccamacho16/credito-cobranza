@@ -1,0 +1,107 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Usuarios</h4>
+                        <p class="card-category">Gestión de Usuarios</p>
+                    </div>
+                    <div class="card-body">
+
+                      <div fxFlex="100" style="display: flex; justify-content: flex-end;">
+                          <button mat-raised-button class="btn btn-primary pull-right" (click)="openDialogCreate()">
+                            <mat-icon >add_circle</mat-icon> &nbsp; Nuevo Usuario
+                          </button>
+                      </div>
+
+                      <div fxLayout="row wrap" class="h-padding-10">
+                            <mat-form-field>
+                              <mat-icon matPrefix style="margin-right: 8px; user-select: none;">search</mat-icon>
+                                <input matInput placeholder='Buscar...' (keyup)="applyFilter($event.target.value)"/>
+                            </mat-form-field>
+                      </div>
+
+                      <div fxLayout="row wrap" class="h-padding-10">
+                        <div fxFlex="100">
+                          <ngx-datatable
+                            #table
+                            class="material"
+                            [columnMode]="'force'"
+                            [headerHeight]="40"
+                            [rowHeight]="'auto'"
+                            [scrollbarH]="true"
+
+                            [count]="this.pageControl.totalElements" 
+                            [offset]="this.pageControl.number"
+                            [limit]="this.pageControl.size" 
+                            [rows]="this.pageControl.content" 
+                            (page)='this.setPage($event)'
+                            >
+
+                            <ngx-datatable-column name="" [flexGrow]="0.4" [draggable]="false" [resizeable]="false">
+                              <ng-template let-row="row" ngx-datatable-cell-template>
+                               
+
+                                <span class="icon-action" matTooltip="Visualizar" 
+                                      style="cursor: pointer; margin-left: 8px; margin-right: 12px; user-select: none;" (click)="openDialogView(row)">
+                                  <mat-icon color="primary">visibility</mat-icon>
+                                </span>
+                                <span class="icon-action" matTooltip="Editar" 
+                                      style="cursor: pointer; margin-right: 12px; user-select: none;" (click)="openDialogUpdate(row)">
+                                  <mat-icon color="primary">edit</mat-icon>
+                                </span>
+                                           
+                              </ng-template>
+                            </ngx-datatable-column> 
+                    
+                              <ngx-datatable-column name="Usuario" prop="Usuario" [flexGrow]="0.6" [draggable]="false" [resizeable]="false">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  {{ row.username }}
+                                </ng-template>
+                              </ngx-datatable-column>
+                              <ngx-datatable-column name="Nombre" prop="Nombre" [flexGrow]="0.6" [draggable]="false" [resizeable]="false">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  {{ row.name }}
+                                </ng-template>
+                              </ngx-datatable-column>
+
+                              <ngx-datatable-column name="Role" prop="Role" [flexGrow]="0.6" [draggable]="false" [resizeable]="false">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  {{ row.nameRole }}
+                                </ng-template>
+                              </ngx-datatable-column>
+                              <ngx-datatable-column name="Sucursal" prop="Sucursal" [flexGrow]="0.6" [draggable]="false" [resizeable]="false">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  {{ row.nameBranch }}
+                                </ng-template>
+                              </ngx-datatable-column>
+                              <ngx-datatable-column name="Estado" prop="Estado" [flexGrow]="0.6" [draggable]="false" [resizeable]="false">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                  {{ getUserStatusLabel(row.status) }}
+                                </ng-template>
+                              </ngx-datatable-column>
+
+
+
+                          </ngx-datatable>
+                          <div class="pagination-controls" style="display: flex; justify-content: space-between;">
+                            <div class="total-records">
+                              Total de registros: {{ pageControl.totalElements }}
+                            </div>
+                            <div>
+                              <span (click)="previousPage()" [class.disabled]="pageControl.number === 0">&lt;</span>
+                              <span>Página {{pageControl.number + 1}} de {{pageControl.totalPages}}</span>
+                              <span (click)="nextPage()" [class.disabled]="pageControl.number >= pageControl.totalPages - 1">&gt;</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  </div>

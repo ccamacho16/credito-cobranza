@@ -1,0 +1,12 @@
+.mat-autocomplete-panel .mat-option {
+    font-size: 14px; /* Ajusta el tamaño según tu diseño */
+    font-family: 'Roboto', sans-serif; /* Asegúrate de que sea el mismo tipo de letra que los otros componentes */
+    color: #333; /* Ajusta el color según tu diseño */
+  }
+
+.mat-autocomplete-panel .mat-option {
+    padding-top: 12px; /* Ajusta este valor según sea necesario */
+    padding-bottom: 8px; /* Ajusta este valor según sea necesario */
+    height: auto; /* Asegúrate de que la altura se ajuste automáticamente */
+    line-height: 1.5; /* Ajusta la altura de la línea según tu diseño */
+  }

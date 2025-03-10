@@ -1,0 +1,105 @@
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h4 class="card-title ">{{ titulo }}</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formGroup">
+            <div class="row">
+                <div class="col-md-5">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Nombre y Apellido" autocomplete="off" formControlName="name" maxlength="80">
+                      <mat-error *ngIf="formGroup.get('name')?.invalid && formGroup.get('name')?.touched">
+                        <small *ngIf="formGroup.get('name')?.errors?.['required']">El nombre y apellido es obligatorio.</small>
+                      </mat-error>
+                    </mat-form-field>
+                </div>
+               <div class="col-md-3">
+                   <mat-form-field class="example-full-width">
+                     <input matInput placeholder="Usuario" autocomplete="off" formControlName="username" maxlength="25">
+                     <mat-error *ngIf="formGroup.get('username')?.invalid && formGroup.get('username')?.touched">
+                        <small *ngIf="formGroup.get('username')?.errors?.['required']">El usuario es obligatorio.</small>
+                      </mat-error>
+                   </mat-form-field>
+               </div>
+               <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput 
+                               [type]="hidePassword ? 'password' : 'text'" 
+                               [placeholder]="accion === 'update' ? 'Nueva Contraseña' : 'Contraseña'" 
+                               autocomplete="off" 
+                               formControlName="password">
+                         <mat-error *ngIf="formGroup.get('password')?.invalid && formGroup.get('password')?.touched">
+                            <small *ngIf="formGroup.get('password')?.errors?.['required']">
+                                La contraseña es obligatoria.
+                            </small>
+                            <small *ngIf="formGroup.get('password')?.errors?.['minlength']">
+                                La contraseña debe tener al menos 7 caracteres.
+                            </small>
+                            <small *ngIf="formGroup.get('password')?.errors?.['maxlength']">
+                                La contraseña debe tener al maximo 12 caracteres.
+                            </small>
+                        </mat-error>                        
+                        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                    </mat-form-field>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" autocomplete="off" formControlName="email" maxlength="40">
+                    <mat-error *ngIf="formGroup.get('email')?.invalid && formGroup.get('email')?.touched">
+                        <small *ngIf="formGroup.get('email')?.errors?.['required']">
+                            El email es obligatorio.
+                        </small>
+                        <small *ngIf="formGroup.get('email')?.errors?.['email']">
+                            Ingresa un email válido.
+                        </small>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="accion === 'update'">
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Estado" formControlName="status" >
+                          <mat-option *ngFor="let status of userStatuses" [value]="status">
+                            {{ getUserStatusLabel(status) }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('status')?.invalid && formGroup.get('status')?.touched">
+                            <small *ngIf="formGroup.get('status')?.errors?.['required']">El estado es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Rol" formControlName="idRole">
+                            <mat-option *ngFor="let rol of this.listRol" [value]="rol.code"  >
+                                {{rol.description}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('idRole')?.invalid && formGroup.get('idRole')?.touched">
+                            <small *ngIf="formGroup.get('idRole')?.errors?.['required']">El role es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Sucursal" formControlName="idBranch">
+                            <mat-option *ngFor="let branch of this.listBranch" [value]="branch.code"  >
+                                {{branch.description}}
+                              </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('idBranch')?.invalid && formGroup.get('idBranch')?.touched">
+                            <small *ngIf="formGroup.get('idBranch')?.errors?.['required']">La sucursal es obligatorio.</small>
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+           </div>
+
+
+           
+           <button mat-raised-button class="btn btn-primary pull-right" (click)="accion === 'update' ? updateClient() : saveClient()">Guardar</button>
+       </form>
+    </div>
+</div>

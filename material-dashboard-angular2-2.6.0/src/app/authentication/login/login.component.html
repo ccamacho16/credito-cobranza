@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header card-header-danger text-center">
+              <h4 class="card-title">Inicio de Sesión</h4>
+              <p class="card-category">Ingresa tus credenciales para acceder</p>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="loginForm">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Usuario</mat-label>
+                      <input matInput formControlName="username" placeholder="Ingresa tu usuario" type="text" />
+                      <mat-error *ngIf="loginForm.hasError('required', ['username'])">Debe ingresar un usuario.</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Contraseña</mat-label>
+                      <input matInput formControlName="password" placeholder="Ingresa tu contraseña" type="password" autocomplete="false"/>
+                      <mat-error *ngIf="loginForm.hasError('required', ['password'])">Debe ingresar una contraseña.</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <button mat-raised-button color="primary" (click)="loginFormSubmit()">Iniciar Sesión</button>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12 text-center">
+                    <a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

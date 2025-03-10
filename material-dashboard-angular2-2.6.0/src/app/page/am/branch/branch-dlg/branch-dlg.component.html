@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h4 class="card-title ">{{ titulo }}</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formGroup">
+            <div class="row">
+               <div class="col-md-4">
+                   <mat-form-field class="example-full-width">
+                     <input matInput placeholder="Nombre" autocomplete="off" formControlName="name" maxlength="50">
+                     <mat-error *ngIf="formGroup.get('name')?.invalid && formGroup.get('name')?.touched">
+                        <small *ngIf="formGroup.get('name')?.errors?.['required']">El nombre es obligatorio.</small>
+                    </mat-error>
+                   </mat-form-field>
+               </div>
+               <div class="col-md-8">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Descripción" autocomplete="off" formControlName="description" maxlength="100">
+                    <mat-error *ngIf="formGroup.get('description')?.invalid && formGroup.get('description')?.touched">
+                        <small *ngIf="formGroup.get('description')?.errors?.['required']">La descripción es obligatorio.</small>
+                    </mat-error>
+                    </mat-form-field>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-md-8">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Dirección" autocomplete="off" formControlName="address" maxlength="150">
+                    <mat-error *ngIf="formGroup.get('address')?.invalid && formGroup.get('address')?.touched">
+                        <small *ngIf="formGroup.get('address')?.errors?.['required']">La dirección es obligatorio.</small>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Telefonos" autocomplete="off" formControlName="phone" maxlength="50">
+                    <mat-error *ngIf="formGroup.get('phone')?.invalid && formGroup.get('phone')?.touched">
+                        <small *ngIf="formGroup.get('phone')?.errors?.['required']">El telefono es obligatorio.</small>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+
+           </div>
+
+           <button mat-raised-button class="btn btn-primary pull-right" (click)="accion === 'update' ? updateClient() : saveClient()">Guardar</button>
+       </form>
+    </div>
+</div>

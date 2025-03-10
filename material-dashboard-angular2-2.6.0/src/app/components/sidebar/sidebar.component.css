@@ -1,0 +1,19 @@
+.nav {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0;
+  padding: 0;
+}
+
+.sub-menu {
+  list-style-type: none;
+  padding-left: 20px;
+  display: none; /* Oculta por defecto */
+}
+
+.nav-item .sub-menu {
+  display: block; /* Muestra cuando se expande */
+}
