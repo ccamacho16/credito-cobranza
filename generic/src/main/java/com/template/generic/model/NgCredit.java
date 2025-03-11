@@ -39,7 +39,7 @@ public class NgCredit extends AuditableEntity{
     @Temporal(TemporalType.TIMESTAMP)
     private Date generationDate;
 
-    @Column(name = "reference_personal", nullable = false, length = 150)
+    @Column(name = "reference_personal", length = 150)
     private String referencePersonal;
 
     @Column(name = "reference_job", length = 150)
@@ -97,12 +97,4 @@ public class NgCredit extends AuditableEntity{
     @JoinColumn(name = "id_credit_officer", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private RcCreditOfficer creditOfficer;
-
-    /*
-    * cliente
-    * garantes
-    * oficial credito
-    * */
-
-
 }

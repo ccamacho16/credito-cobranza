@@ -70,4 +70,8 @@ public class NgCreditDetail extends AuditableEntity{
     @Column(name = "status", nullable = false)
     private CreditShareEnum status;  //PENDIENTE - PARCIAL -PAGADO
 
+    @JoinColumn(name = "id_credit", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private NgCredit credit;
+
 }
