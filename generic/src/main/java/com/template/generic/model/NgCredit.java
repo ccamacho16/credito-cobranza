@@ -2,11 +2,13 @@ package com.template.generic.model;
 
 import com.template.generic.model.enums.CreditStatusEnum;
 import com.template.generic.model.enums.CreditTypeEnum;
+import com.template.generic.model.enums.CreditTypePlanPaymentEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * -------------------------------------------------------------------------*
@@ -45,6 +47,10 @@ public class NgCredit extends AuditableEntity{
     @Column(name = "reference_job", length = 150)
     private String referenceJob;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "typePlanPayment", nullable = false)
+    private CreditTypePlanPaymentEnum typePlanPayment; // tipo de plan de pago
+
     @Column(name = "frequency_payment", nullable = false, length = 25)
     private String frequencyPayment;  //MENSUAL - QUINCENAL -SEMANAL
 
@@ -82,7 +88,7 @@ public class NgCredit extends AuditableEntity{
     private CreditTypeEnum type;  //NUEVO-REPROGRAMACION-REFINANCIAMIENTO
 
     @Column(name = "credit_origin", nullable = true)
-    private Long creditOrigin;
+    private NgCredit creditOrigin;
 
     @Column(name = "comment", length = 250)
     private String comment; // comentario del credito en general.
@@ -97,4 +103,13 @@ public class NgCredit extends AuditableEntity{
     @JoinColumn(name = "id_credit_officer", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private RcCreditOfficer creditOfficer;
+
+    @JoinColumn(name = "id_branch", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private AmBranch branch;
+
+    @OneToMany(mappedBy = "credit", fetch = FetchType.LAZY)
+    private Set<NgCreditDetail> creditDetails;
+
+
 }

@@ -1,5 +1,6 @@
 package com.template.generic.model;
 
+import com.template.generic.model.enums.DestinationPartialPaymentEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,8 +40,9 @@ public class NgPartialPaymentHistory extends AuditableEntity{
     @Column(name = "amount", nullable = false)
     private Integer amount;
 
-    @Column(name = "destination", nullable = false, length = 50)
-    private String destination; // capital - interes
+    @Enumerated(EnumType.STRING)
+    @Column(name = "destination", nullable = false)
+    private DestinationPartialPaymentEnum destination; // capital - interes
 
     @JoinColumn(name = "id_credit_detail", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
