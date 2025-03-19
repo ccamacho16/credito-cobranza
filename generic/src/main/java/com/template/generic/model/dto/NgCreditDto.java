@@ -9,6 +9,7 @@ import com.template.generic.model.RcGuarantor;
 import com.template.generic.model.enums.CreditStatusEnum;
 import com.template.generic.model.enums.CreditTypeEnum;
 import com.template.generic.model.enums.CreditTypePlanPaymentEnum;
+import com.template.generic.model.enums.FrecuencyPaymentEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -43,7 +44,7 @@ public class NgCreditDto extends AbstractAuditableDto {
     private String referencePersonal;
     private String referenceJob;
     private CreditTypePlanPaymentEnum typePlanPayment; // tipo de plan de pago
-    private String frequencyPayment;  //MENSUAL - QUINCENAL -SEMANAL
+    private FrecuencyPaymentEnum frequencyPayment;  //MENSUAL - QUINCENAL -SEMANAL
     private Integer amount;
     private Integer capitalBalance;  // saldo capital
     private Byte term; //plazo
@@ -68,6 +69,7 @@ public class NgCreditDto extends AbstractAuditableDto {
 
     private Set<NgCreditDetailDto> creditDetailsDto;
 
+    private Set<Long> idsGuarantos;
     private Set<RcGuarantorDto> guarantosDto; //lista de garantes, en el caso de que aplique.
 
     public NgCreditDto(NgCredit ngCredit){

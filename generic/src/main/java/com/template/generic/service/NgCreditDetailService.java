@@ -1,13 +1,10 @@
 package com.template.generic.service;
 
-import com.template.generic.model.NgCreditDetail;
 import com.template.generic.model.dto.NgCreditDetailDto;
-import com.template.generic.model.dto.NgCreditDto;
-import com.template.generic.model.dto.select.CreditCabDto;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * -------------------------------------------------------------------------*
@@ -19,12 +16,9 @@ import java.util.List;
  * Author Prog.: Crisvel Camacho
  * -------------------------------------------------------------------------*
  * Fecha | Author | Comentario
- * 11.03.2025 | Crisvel Camacho | Creación Inicial
+ * 13.03.2025 | Crisvel Camacho | Creación Inicial
  * -------------------------------------------------------------------------*
  */
-public interface NgCreditService {
-    Page<CreditCabDto> listByFilter(String filter, Pageable pageable);
-    List<NgCreditDetailDto> generatePaymentPlan(NgCreditDto dto);
-    NgCreditDto create(NgCreditDto dto);
-    NgCreditDto findById(Long id);
+public interface NgCreditDetailService {
+    void createFromList(Set<NgCreditDetailDto> list, Long idCredit);
 }

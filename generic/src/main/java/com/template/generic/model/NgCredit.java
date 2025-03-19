@@ -3,6 +3,7 @@ package com.template.generic.model;
 import com.template.generic.model.enums.CreditStatusEnum;
 import com.template.generic.model.enums.CreditTypeEnum;
 import com.template.generic.model.enums.CreditTypePlanPaymentEnum;
+import com.template.generic.model.enums.FrecuencyPaymentEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -51,8 +52,9 @@ public class NgCredit extends AuditableEntity{
     @Column(name = "typePlanPayment", nullable = false)
     private CreditTypePlanPaymentEnum typePlanPayment; // tipo de plan de pago
 
-    @Column(name = "frequency_payment", nullable = false, length = 25)
-    private String frequencyPayment;  //MENSUAL - QUINCENAL -SEMANAL
+    @Enumerated(EnumType.STRING)
+    @Column(name = "frequency_payment", nullable = false)
+    private FrecuencyPaymentEnum frequencyPayment;  //MENSUAL - QUINCENAL -SEMANAL
 
     @Column(name = "amount", nullable = false)
     private Integer amount;
@@ -61,7 +63,7 @@ public class NgCredit extends AuditableEntity{
     private Integer capitalBalance;  // saldo capital
 
     @Column(name = "term", nullable = false)
-    private Byte term; //plazo
+    private Byte term; //plazo - Es el numero de meses.
 
     @Column(name = "number_shares", nullable = false)
     private Byte numberShares; //numero de cuotas
@@ -79,7 +81,7 @@ public class NgCredit extends AuditableEntity{
     @Column(name = "status", nullable = false)
     private CreditStatusEnum status;  //SOLICTIADO, APROBADO, ACTIVO, ETC.
 
-    @Column(name = "disbursement_date", nullable = false)
+    @Column(name = "disbursement_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date disbursementDate; //fecha de desembolso
 

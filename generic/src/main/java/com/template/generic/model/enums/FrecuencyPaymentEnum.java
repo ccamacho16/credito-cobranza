@@ -13,18 +13,19 @@ import lombok.ToString;
  * Author Prog.: Crisvel Camacho
  * -------------------------------------------------------------------------*
  * Fecha | Author | Comentario
- * 11.03.2025 | Crisvel Camacho | Creación Inicial
+ * 12.03.2025 | Crisvel Camacho | Creación Inicial
  * -------------------------------------------------------------------------*
  */
 @Getter
 @ToString
-public enum CreditTypePlanPaymentEnum {
-    CUOTAS_FIJAS("Fijas"),                       //Sistema Frances
-    CUOTAS_DECRECIENTES("Descrecientes");        //Sistema Aleman
+public enum FrecuencyPaymentEnum {
+    MENSUAL("Mensual"),
+    QUINCENAL("Quincenal"),
+    SEMANAL("Semanal");
 
-    private final String typePlanPayment;
-    CreditTypePlanPaymentEnum(String typePlanPayment) {
-        this.typePlanPayment = typePlanPayment;
+    private final String frecuency;
+    FrecuencyPaymentEnum(String frecuency) {
+        this.frecuency = frecuency;
     }
 
 }

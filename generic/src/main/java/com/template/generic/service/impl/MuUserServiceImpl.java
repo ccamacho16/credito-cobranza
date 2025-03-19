@@ -53,7 +53,7 @@ public class MuUserServiceImpl implements MuUserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-        @Override
+    @Override
     @Transactional(readOnly = true)
     public Page<MuUserDto> listByFilter(String filter, Pageable pageable) {
         ValidationUtil.throwExceptionIfInvalidText("Filtro", filter, false, 50);
